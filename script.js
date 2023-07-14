@@ -4,8 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const numberButtons = document.querySelectorAll('.num');
     const operatorButtons = document.querySelectorAll('.op');
     const equalButton = document.querySelector('.equalButton');
-    let firstNumber = '';
+    const clearButton = document.querySelector('.clearButton');
+
     let selectedOperator = '';
+
+    let shouldEvaluate = false;
 
     // Handle number button clicking
     numberButtons.forEach(numberButton => {
@@ -15,33 +18,61 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    function evaluate() {
+        const expression = screen.textContent;
+        const splitIndex = expression.lastIndexOf(selectedOperator);
+
+        // Split the expression into firstNumber and secondNumber
+        const firstNumber = expression.slice(0, splitIndex);
+        const secondNumber = expression.slice(splitIndex + 1);
+
+        let result;
+
+        if (selectedOperator === '-') {
+            result = subtract(parseFloat(firstNumber), parseFloat(secondNumber));
+        } 
+        else {
+            result = operate(parseFloat(firstNumber), selectedOperator, parseFloat(secondNumber));
+        }
+
+        screen.textContent = result;
+        shouldEvaluate = false;
+    }
+
+
     // Handle operator button clicking
     operatorButtons.forEach(operatorButton => {
         operatorButton.addEventListener('click', function () {
-            firstNumber = screen.textContent; // Take the numbers from before the operator
-            selectedOperator = this.value;
-            screen.textContent += this.value;
+            if (shouldEvaluate) {
+                evaluate();
+            }
 
-            // Disable operators if one has already been selected on screen
-            operatorButtons.forEach(button => {
-                button.disabled = true;
-            });
+            const lastChar = screen.textContent.slice(-1);
+            const isDigit = /\d/.test(lastChar);
 
+            if (isDigit) {
+                selectedOperator = this.value;
+                screen.textContent += this.value;
+
+                // Enable equal button again
+                equalButton.disabled = false;
+
+                shouldEvaluate = true;
+            }
         });
     });
 
     // Handle equal button clicking
     equalButton.addEventListener('click', function () {
-        const secondNumber = screen.textContent.slice(firstNumber.length + 1);
-        const result = operate(parseFloat(firstNumber), selectedOperator, parseFloat(secondNumber));
-
-        screen.textContent = result;
+        evaluate();
         selectedOperator = '';
+    });
 
-        // Enable operations again
-        operatorButtons.forEach(button => {
-            button.disabled = false;
-        });
+    // Handle clear button clicking
+    clearButton.addEventListener('click', function () {
+        screen.textContent = '';
+        selectedOperator = '';
+        shouldEvaluate = false;
     });
 
 
