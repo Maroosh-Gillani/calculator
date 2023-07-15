@@ -1,4 +1,58 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    background-color: darkslategray;
+    padding: 10px;
+    border-radius: 8px;
+    height: 200px;
+}
+
 .screen {
-    border: solid;
+    display: flex;
+    align-items: center;
+    height: 32px;
+    background-color: black;
+    color: lightgray;
+    margin-bottom: 20px;
+    padding: 4px;
+}
+
+.buttons {
+    display: flex;
+}
+
+.numberButtons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100px;
+    justify-content: center;
+    gap: 3px;
+}
+
+.numberButtons .num{
+    background-color: orange;
+}
+
+.operatorButtons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 66px;
+    justify-content: center;
+    gap: 3px;
+}
+
+.operatorButtons .op {
+    background-color: darkcyan;
+}
+
+button {
     height: 30px;
+    width: 30px;
+    border-radius: 8px;
+    color: aliceblue;
+    background-color: darkgray;
 }
