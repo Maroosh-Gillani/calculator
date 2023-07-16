@@ -1,24 +1,28 @@
 body {
+    height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #b8b8b8;
 }
 
 .container {
     background-color: darkslategray;
-    padding: 10px;
+    padding: 15px;
     border-radius: 8px;
-    height: 200px;
+    height: 300px;
 }
 
 .screen {
     display: flex;
     align-items: center;
-    height: 32px;
+    height: 45px;
     background-color: black;
     color: lightgray;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     padding: 4px;
+    font-size: larger;
 }
 
 .buttons {
@@ -28,7 +32,7 @@ body {
 .numberButtons {
     display: flex;
     flex-wrap: wrap;
-    width: 100px;
+    width: 150px;
     justify-content: center;
     gap: 3px;
 }
@@ -40,7 +44,7 @@ body {
 .operatorButtons {
     display: flex;
     flex-wrap: wrap;
-    width: 66px;
+    width: 100px;
     justify-content: center;
     gap: 3px;
 }
@@ -50,9 +54,11 @@ body {
 }
 
 button {
-    height: 30px;
-    width: 30px;
+    height: 45px;
+    width: 45px;
     border-radius: 8px;
     color: aliceblue;
     background-color: darkgray;
+    font-size: large;
+    font-weight: bold;
 }
